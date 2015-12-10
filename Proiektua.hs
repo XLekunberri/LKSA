@@ -1,12 +1,12 @@
 praktika :: IO()
  praktika = do n<- alK
-  f<-fK n
+  f <- (fK n)
   menu n f
 
   
   
 menu :: Integer -> [[Integer]] -> IO()
- menu n f = do putStr("Sartutako CNF formula:"
+ menu n f = do putStr"Sartutako CNF formula:"
   fAd n f
   aukeratu n f
   
@@ -74,9 +74,9 @@ bEE :: IO boolean
  bEE = do putStr" B(Bai)-E(Ez)"
  b <- getLine
  read b :: string
- if b == "b"
+ if b == "B"
  	then return true
- 	if b =="e"
+ 	if b =="E"
  		then return false
  		else do putStrLn""
  		 bEE
@@ -90,3 +90,39 @@ konprobatu :: [Integer] -> Integer -> boolean
   | i < 0 = false
   | x==0 || x==1 || x==(-1) = konprobatu s (i-1)
   | otherwise = false
+
+
+fAd :: [[Integer]] -> IO()
+ fAd f = fAdMur f
+
+
+fAdMur :: [[Integer]] -> IO()
+ fAdMur[] i = error "Ez dago formularik"
+ fAdMur x:s = do fAdMur1 x 1
+  if s!=[]
+   then fAdMur2 s
+
+fAdMur1 :: [Integer] ->Integer -> IO()
+ fAdMur1 [] i = putStr")"
+ fAdMur1 x:s i = do putStr"("
+  if x==1
+   then do print(" x"+i)
+   else if x==(-1)
+    then print(" ¬x"+i)
+  putStr" v "
+  fAdMur1 s (i+1)
+
+fAdMur2 :: [[Integer]] -> IO()
+ fAdMur2 []= putStr""
+ fAdMur2 x:s = do if x!=[]
+   then fAdMur1 x 1
+   putStr" ^ "
+   fAdMur2 s
+
+
+
+  
+
+
+  
+  

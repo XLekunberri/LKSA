@@ -1,5 +1,5 @@
---Xabier Lecumberri Mezo
---Andoni Bermo Pérez
+-- Xabier Lecumberri Mezo
+-- Andoni Bermo Pérez
 
 --HASKELL-EKO PRAKTIKA: KONPUTATZEAREN KONPLEXUTASUNA
 
@@ -30,7 +30,7 @@ praktika = do
 
 menu :: Integer -> [[Integer]] -> IO()  --CNF formula pantailaratu eta menua abiarazi
 menu n f = do
-	putStr"Sartutako CNF formula:"
+	putStr("\n"++"Sartutako CNF formula: ")
 	fAd f
 	aukeratu n f
 
@@ -50,8 +50,8 @@ alK = do
 
 aukeratu :: Integer -> [[Integer]] -> IO ()  --Menuko aukeraketa egin
 aukeratu n f = do
-	putStrLn""
-	putStr("Hautatu aukera bat:"++"\n"++"\n"++"1. Egiazkotasun-proba"++"\n"++"2. Betegarritasun-proba"++"\n"++"3. Baliozkotasun-proba"++"\n"++"4. Bukatu")
+	--putStrLn""
+	putStrLn("\n"++"\n"++"Hautatu aukera bat:"++"\n"++"\n"++"1. Egiazkotasun-proba"++"\n"++"2. Betegarritasun-proba"++"\n"++"3. Baliozkotasun-proba"++"\n"++"4. Bukatu")
 	a <- lZb
 	if a==1
 		then do
@@ -94,7 +94,7 @@ egiaztatu x i = do
 			then if i == 0
 				then True
 				else False
-			else if i < 0 
+			else if i < 0
 				then False
 				else if (head x) == 1 || (head x) == (0)
 					then egiaztatu (tail x) (i-1)
@@ -141,6 +141,7 @@ bePMur f x = do
 				then putStrLn"Betegarria da (True delako)"
 				else if egPK f (head x)
 					then do
+						putStrLn"Betegarria da"
 						putStr"("
 						adi (head x)
 					else bePMur f (tail x)
@@ -200,7 +201,7 @@ lZb = do
 
 fK :: Integer -> IO [[Integer]]  --Formula lortzeko pausoak kudeatzen ditu
 fK n = do
-		putStrLn"Adierazi CNF formula:"
+		putStrLn("\n"++"Adierazi CNF formula:")
 		ema <- (lZbZZ (n))
 		return ema
 
